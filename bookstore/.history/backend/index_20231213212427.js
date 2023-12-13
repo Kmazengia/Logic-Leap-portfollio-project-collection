@@ -2,7 +2,7 @@ import express, { request, response } from "express";
 import mongoose from "mongoose";
 import { PORT, mongoDBURL } from "./config.js";
 import { Book } from "./models/bookmodel.js";
-import booksRoute from "./routes/booksRoute.js";
+import { router } from "./routes/booksRoute.js"
 
 const app = express();
 
@@ -13,8 +13,7 @@ app.get("/", (request, response) => {
     console.log(request);
     return response.status(234).send("Welcome to the MERN stack tutorial");
     });
-app.use("/books", booksRoute);
-
+app.use("/books", bookRoute);
 mongoose
     .connect(mongoDBURL)
     .then(() => {
