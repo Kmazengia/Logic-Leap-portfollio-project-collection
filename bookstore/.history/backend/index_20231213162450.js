@@ -1,11 +1,9 @@
-import express, { request, response } from "express";
+import express from "express";
 import mongoose from "mongoose";
 import { PORT, mongoDBURL } from "./config.js";
 import { Book } from "./models/bookmodel.js";
 
 const app = express();
-
-// middleware for parse request body (app.use(express.json());)
 app.use(express.json());
 
 app.get("/", (request, response) => {
@@ -44,17 +42,7 @@ app.post("/books", async (request, response) => {
         response.status(500).send({ error: "Internal Server Error" });
     }
 });
-// Route to get all books at atime
-app.get('/books', async(request, response) => {
-    try{
-        const books = await Book.find({});
-        return response.status(200).json(books);
-    }
-    catch(error){
-        console.log(error.message);
-        response.status(500).send({message: error.message});
-    }
-});
+
 mongoose
     .connect(mongoDBURL)
     .then(() => {

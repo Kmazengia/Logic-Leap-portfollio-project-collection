@@ -45,10 +45,9 @@ app.post("/books", async (request, response) => {
     }
 });
 // Route to get all books at atime
-app.get('/books', async(request, response) => {
+app.get('/books' async(request, response) => {
     try{
-        const books = await Book.find({});
-        return response.status(200).json(books);
+
     }
     catch(error){
         console.log(error.message);
